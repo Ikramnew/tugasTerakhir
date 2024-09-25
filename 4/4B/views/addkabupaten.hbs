@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Kabupaten</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+        <h1 class="text-center my-4">{{#if kabupaten}}Edit Kabupaten{{else}}Add Kabupaten{{/if}}</h1>
+        <form action="{{#if kabupaten}}/kabupaten/edit/{{kabupaten.id}}{{else}}/addkabupaten{{/if}}" method="POST">
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" name="nama" id="nama" value="{{#if kabupaten}}{{kabupaten.nama}}{{/if}}" required>
+            </div>
+            <div class="form-group">
+                <label for="provinsi_id">Provinsi ID</label>
+                <input type="number" class="form-control" name="provinsi_id" id="provinsi_id" value="{{#if kabupaten}}{{kabupaten.provinsi_id}}{{/if}}" required>
+            </div>
+            <div class="form-group">
+                <label for="diresmikan">Diresmikan</label>
+                <input type="date" class="form-control" name="diresmikan" id="diresmikan" value="{{#if kabupaten}}{{kabupaten.diresmikan}}{{/if}}" required>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo URL</label>
+                <input type="file" class="form-control" name="photo" accept="image/*" required id="photo" value="{{#if kabupaten}}{{kabupaten.photo}}{{/if}}" required>
+            </div>
+            <button type="submit" class="btn btn-success">{{#if kabupaten}}Update Kabupaten{{else}}Add Kabupaten{{/if}}</button>
+        </form>
+        <a href="/kabupaten" class="btn btn-secondary mt-3">Cancel</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

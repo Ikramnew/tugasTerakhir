@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provinsi & Kabupaten</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            margin: 20px;
+        }
+        .card img {
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+        <h1 class="text-center my-4">Provinsi & Kabupaten</h1>
+       
+        <div class="text-right mb-3">
+            {{#if user}} 
+                <a href="/addprovinsi" class="btn btn-primary">Add Provinsi</a>
+                <a href="/addkabupaten" class="btn btn-primary">Add Kabupaten</a>
+{{!--             
+            <h1 class="text-center my-4">Welcome Final task</h1>
+            <h1 class="text-center my-4"> <a href="/login" class="btn btn-primary text-center my-4">Login</a>
+            <a href="/register" class="btn btn-secondary text-center my-4">Register</a></h1>        --}}
+        {{/if}}
+        </div>
+        <div class="row">
+            {{#each provinsi}}
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <img src="{{this.photo}}" class="card-img-top" alt="{{this.nama}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.nama}}</h5>
+                            <p class="card-text">{{this.diresmikan}}</p>
+                            <a href="/provinsi/{{this.id}}" class="btn btn-light">Detail</a>
+                            {{#if user }} <!-- Check if user is logged in for Edit and Delete buttons -->
+                                <a href="/provinsi/edit/{{this.id}}" class="btn btn-warning">Edit</a>
+                                <form action="/provinsi/delete/{{this.id}}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
