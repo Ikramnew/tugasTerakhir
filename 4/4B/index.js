@@ -95,6 +95,9 @@ app.get('/provinsi', isAuthenticated, async (req, res) => {
 app.get('/addprovinsi', isAuthenticated, (req, res) => {
     res.render('addProvinsi');
 });
+app.get('/addkabupaten', isAuthenticated, (req, res) => {
+    res.render('addkabupaten');
+});
 
 // Add Provinsi
 app.post('/addprovinsi', isAuthenticated, upload.single('photo'), async (req, res) => {
