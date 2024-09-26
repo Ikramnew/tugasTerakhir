@@ -9,7 +9,7 @@
 <body class="bg-dark text-white">
     <div class="container">
         <h1 class="text-center my-4">{{#if kabupaten}}Edit Kabupaten{{else}}Add Kabupaten{{/if}}</h1>
-        <form action="{{#if kabupaten}}/kabupaten/edit/{{kabupaten.id}}{{else}}/addkabupaten{{/if}}" method="POST">
+        <form action="{{#if kabupaten}}/kabupaten/edit/{{kabupaten.id}}{{else}}/addkabupaten{{/if}}" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control" name="nama" id="nama" value="{{#if kabupaten}}{{kabupaten.nama}}{{/if}}" required>

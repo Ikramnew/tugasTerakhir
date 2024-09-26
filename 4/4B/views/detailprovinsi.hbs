@@ -8,12 +8,25 @@
 </head>
 <body class="bg-dark text-white">
     <div class="container">
+        <!-- Display Province Details -->
         <h1 class="text-center my-4">{{provinsi.nama}}</h1>
         <img src="/{{provinsi.photo}}" class="img-fluid" alt="{{provinsi.nama}}">
         <p>Diresmikan: {{provinsi.diresmikan}}</p>
         <p>Pulau: {{provinsi.pulau}}</p>
 
-        <a href="/provinsi" class="btn btn-primary">Back to Provinsi</a>
+        <!-- List of Kabupaten -->
+        <h2 class="text-center my-4">Kabupaten in {{provinsi.nama}}</h2>
+        <ul class="list-group">
+            {{#each kabupaten}}
+                <li class="list-group-item bg-dark text-white">
+                    <h5>{{this.nama}}</h5>
+                    <p>Diresmikan: {{this.diresmikan}}</p>
+                    <img src="/{{this.photo}}" class="img-fluid" alt="{{this.nama}}">
+                </li>
+            {{/each}}
+        </ul>
+
+        <a href="/provinsi" class="btn btn-primary mt-4">Back to Provinsi</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

@@ -9,14 +9,20 @@
 <body class="bg-dark text-white">
     <div class="container">
         <h1 class="text-center my-4">Provinsi</h1>
+        
         <div class="text-right mb-3">
+            <a href="/provinsi" class="btn btn-success active"> Provinsi</a>
+            <a href="/kabupaten" class="btn btn-success">kabupaten</a>
+        </div>
+        <div class="text-left mb-3">
             <a href="/addprovinsi" class="btn btn-primary">Add Provinsi</a>
         </div>
+       
         <div class="row">
             {{#each provinsi}}
             <div class="col-md-3">
-                <div class="card bg-primary text-white mb-3">
-                    <img src="{{this.photo}}" class="card-img-top" alt="{{this.nama}}">
+                <div class="card bg-secondary text-white mb-3">
+                    <img src="{{this.photo}}" class="card-img-top" alt="{{this.nama}} " style="width: 100%;" height="200px">
                     <div class="card-body">
                         <h5 class="card-title">{{this.nama}}</h5>
                         <p class="card-text">Diresmikan: {{this.diresmikan}}</p>

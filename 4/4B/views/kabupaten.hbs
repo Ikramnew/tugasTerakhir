@@ -10,12 +10,16 @@
     <div class="container">
         <h1 class="text-center my-4">Kabupaten</h1>
         <div class="text-right mb-3">
-            <a href="/addkabupaten" class="btn btn-primary">Add Kabupaten</a>
+            <a href="/provinsi" class="btn btn-success "> Provinsi</a>
+            <a href="/kabupaten" class="btn btn-success active">kabupaten</a>
+        </div>
+        <div class="text-left mb-3">
+            <a href="/addkabupaten" class="btn btn-primary">Add kabu</a>
         </div>
         <div class="row">
             {{#each kabupaten}}
             <div class="col-md-3">
-                <div class="card bg-primary text-white mb-3">
+                <div class="card bg-secondary text-white mb-3">
                     <img src="{{this.photo}}" class="card-img-top" alt="{{this.nama}}">
                     <div class="card-body">
                         <h5 class="card-title">{{this.nama}}</h5>

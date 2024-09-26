@@ -152,16 +152,39 @@ app.get('/kabupaten', isAuthenticated, async (req, res) => {
 // Add Kabupaten
 app.post('/addkabupaten', isAuthenticated, upload.single('photo'), async (req, res) => {
     const { nama, provinsi_id, diresmikan } = req.body;
-    const photo = req.file.filename; // Get the filename from Multer
+    const photo = req.file.filename; 
     await pool.query('INSERT INTO kabupaten_tb (nama, provinsi_id, diresmikan, photo) VALUES ($1, $2, $3, $4)', [nama, provinsi_id, diresmikan, photo]);
     res.redirect('/kabupaten');
 });
 
 // Detail Kabupaten
+// Route to display the detail page of a specific kabupaten
 app.get('/kabupaten/:id', isAuthenticated, async (req, res) => {
-    const kabupaten = await pool.query('SELECT * FROM kabupaten_tb WHERE id = $1', [req.params.id]);
-    res.render('detailKabupaten', { kabupaten: kabupaten.rows[0] });
+    try {
+        // Fetch the kabupaten details using the kabupaten id
+        const kabupatenResult = await pool.query('SELECT * FROM kabupaten_tb WHERE id = $1', [req.params.id]);
+        const kabupaten = kabupatenResult.rows[0];
+
+        if (!kabupaten) {
+            return res.send('Kabupaten not found');
+        }
+
+        // Fetch the associated provinsi using provinsi_id from the kabupaten
+        const provinsiResult = await pool.query('SELECT * FROM provinsi_tb WHERE id = $1', [kabupaten.provinsi_id]);
+        const provinsi = provinsiResult.rows[0];
+
+        if (!provinsi) {
+            return res.send('Provinsi not found');
+        }
+
+        // Render the detailKabupaten template with the kabupaten and provinsi data
+        res.render('detailKabupaten', { kabupaten, provinsi });
+    } catch (error) {
+        console.error(error);
+        res.send('Error fetching data');
+    }
 });
+
 
 // Edit Kabupaten
 app.get('/kabupaten/edit/:id', isAuthenticated, async (req, res) => {
